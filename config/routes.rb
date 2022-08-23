@@ -40,6 +40,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get 'customers/edit'
   end
   namespace :admin do
+    post 'genres/create'
     get 'genres/index'
     get 'genres/edit'
   end

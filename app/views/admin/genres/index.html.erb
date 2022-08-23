@@ -1,10 +1,10 @@
 <h1>ジャンル一覧・追加</h1>
 
 <h1>新規投稿</h1>
-<%= form_with model: Admin.index do |f| %>
+<%= form_with model: @genre, url:'/admin/genres/create' do |f| %>
   <h4>ジャンル名</h4>
   <%= f.text_field :title %>
-  <%= f.submit 新規 %>
+  <%= f.submit '新規登録' %>
 <% end %>
 
-<p>Find me in app/views/admin/genres/index.html.erb</p>
+
