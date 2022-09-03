@@ -1,6 +1,6 @@
 <h1>商品新規登録</h1>
 
-<%= form_with model: @item, url: new_admin_item_path(@item) do |f| %>
+<%= form_with model: @item, url: admin_items_path(@item) do |f| %>
   <h4>画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
 
@@ -23,6 +23,6 @@
   <%= f.radio_button :is_active, false %>
   <%= f.label :is_active, "販売停止中", {value: false} %>
   </br>
-  
+
   <%= f.submit '新規登録' %>
 <% end %>
