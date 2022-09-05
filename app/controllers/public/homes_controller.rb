@@ -3,7 +3,7 @@ class Public::HomesController < ApplicationController
 
   end
 
-  def top
+  def about
 
   end
 

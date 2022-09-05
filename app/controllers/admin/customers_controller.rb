@@ -8,6 +8,6 @@ class Admin::CustomersController < ApplicationController
   end
 
   def edit
-    
+
   end
 end
