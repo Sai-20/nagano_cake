@@ -35,7 +35,8 @@ Rails.application.routes.draw do
 
   scope module: :public do
     get 'customers/mypage' => 'customers#show', as: 'mypage'
-    get 'customers/edit'
+    get 'customers/information/edit' => 'customers#edit', as: 'info_edit'
+    patch 'customers/information' => 'customers#update', as: 'info_update'
   end
   namespace :public do
     get 'homes/top'
