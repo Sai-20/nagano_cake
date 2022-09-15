@@ -37,6 +37,8 @@ Rails.application.routes.draw do
     get 'customers/mypage' => 'customers#show', as: 'mypage'
     get 'customers/information/edit' => 'customers#edit', as: 'info_edit'
     patch 'customers/information' => 'customers#update', as: 'info_update'
+    get 'customers/withdraw' => 'customers#withdraw'
+    patch 'customers/leave' => 'customers#leave'
   end
   namespace :public do
     get 'homes/top'
