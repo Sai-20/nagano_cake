@@ -21,9 +21,9 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
+    resources :addresses, only: [:index,:create,:edit,:update,:destroy]
   end
+
   namespace :public do
     get 'orders/new'
     get 'orders/index'
