@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <th>　商品ID　</th>
+    <th>　商品名　</th>
+    <th>　税抜価格　</th>
+  </tr>
+  <% @items.each do |item| %>
+  <tr>
+    <td><%= item.id %></td>
+    <td><% if item.image.attached? %>
+          <%= image_tag item.image, size:"200x200" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "200x200" %>
+        <% end %> </td>
+    <td><%= link_to item.name, admin_item_path(item) %></td>
+    <td><%= item.price %></td>
+  </tr>
+  <% end %>
+</table>

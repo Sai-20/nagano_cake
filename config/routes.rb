@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
 }
 
-
   devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -22,6 +21,10 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :addresses, only: [:index,:create,:edit,:update,:destroy]
+  end
+
+  namespace :public do
+    resources :items, only: [:index, :show]
   end
 
   namespace :public do

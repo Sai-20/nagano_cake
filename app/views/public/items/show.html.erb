@@ -1,0 +1,13 @@
+
+<h4>商品詳細</h4>
+<% if @item.image.attached? %>
+  <%= image_tag @item.image, size:"200x200" %>
+<% else %>
+  <%= image_tag 'no_image', size: "200x200" %>
+<% end %>
+<h4>商品名</h4>
+<%= @item.name %>
+<h4>商品紹介</h4>
+<%= @item.introduction %>
+<h4>税込価格(税抜価格)</h4>
+<%= @item.with_tax_price %>
