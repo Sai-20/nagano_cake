@@ -11,3 +11,10 @@
 <%= @item.introduction %>
 <h4>税込価格(税抜価格)</h4>
 <%= @item.with_tax_price %>
+
+
+<%= form_with model: @cart_item, url: public_cart_items_path do |f| %>
+<%= f.hidden_field :item_id, :value => @item.id  %>
+<%= f.select :amount, [['いち',1], ['に',2], ['さん',3]], { include_blank: '数量選択'} %>
+<%= f.submit 'カートに入れる' %>
+<% end %>

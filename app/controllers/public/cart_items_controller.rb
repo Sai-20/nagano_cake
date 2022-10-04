@@ -5,25 +5,38 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
-    redirect_to
+    @cart_item = current_customer.cart_items.new(cart_items_params)
+    if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
+      cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
+      cart_item.update(amount: cart_item.amount.to_i + @cart_item.amount.to_i)
+      redirect_to public_cart_items_path
+    else
+      if @cart_item.save
+        flash[:notice] = 'カートに入りました.'
+        redirect_to public_cart_items_path
+      else
+      render 'public/items/show'
+      end
+    end
   end
 
   def update
-    redirect_to
+    redirect_to public_cart_items_path
   end
 
   def destroy
-    redirect_to
+    redirect_to public_cart_items_path
   end
 
   def destroy_all
-    redirect_to
+    @destroy_all = current_customer.destroy_all
+    redirect_to public_cart_items_path
   end
 
   private
 
-  def cart_items_prams
-    params.require(:cart_items).permit(:item_id, :amount)
+  def cart_items_params
+    params.require(:cart_item).permit(:item_id, :amount)
   end
 
 end
