@@ -1,2 +1,23 @@
-<h1>Public::CartItems#index</h1>
+<h1>ショッピングカート</h1>
+<table>
+  <th><%= button_to "カートを空にする", public_destroy_all_path, method: :delete %></th>
+  <tr>
+    <th>  商品名  </th>
+    <th>  単価  </th>
+    <th>  数量  </th>
+    <th>  小計  </th>
+  </tr>
+  <% @cart_items.each do |cart_item| %>
+  <tr>
+    <td><%= cart_item.item.name %></td>
+    <td><%= cart_item.item.with_tax_price %></td>
+    <td><%= cart_item.amount%></td>
+    <td><%= cart_item.subtotal %></td>
+    <td><%= link_to "削除", public_cart_items_path(cart_item.id), method: :delete %></td>
+
+  </tr>
+  <% end %>
+
+
+</table>
 <p>Find me in app/views/public/cart_items/index.html.erb</p>
