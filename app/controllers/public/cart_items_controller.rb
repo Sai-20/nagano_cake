@@ -30,8 +30,8 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
-    current_customer.cart_items.find(params[:cart_items.id])
-    current_customer.cart_items.destroy
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy
     flash[:notice] = "Book was successfully destroyed."
     redirect_to public_cart_items_path
   end
@@ -39,7 +39,7 @@ class Public::CartItemsController < ApplicationController
 
 
   def destroy_all
-    @destroy_all = current_customer.cart_item.destroy_all
+    @destroy_all = current_customer.cart_items.destroy_all
     redirect_to public_cart_items_path
   end
 
