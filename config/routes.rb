@@ -20,17 +20,15 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
-    resources :addresses, only: [:index,:create,:edit,:update,:destroy]
+    resources :addresses, only: [:new,:index,:create,:edit,:update,:destroy]
   end
 
   namespace :public do
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index,:show]
   end
 
   namespace :public do
-    get 'orders/new'
-    get 'orders/index'
-    get 'orders/show'
+    resources :orders,only:  [:new,:index,:show]
   end
 
 
