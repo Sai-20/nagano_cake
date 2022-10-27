@@ -1,18 +1,24 @@
   <h1>注文情報入力</h1>
 
-  <%= form_with model: @order, url: new_public_order_path  do |f| %>
+  <%= form_with model: @order, url: public_confirm_path  do |f| %>
   <h4> 支払方法 </h4>
 
-  <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+  <%= f.radio_button :payment_method, Order.payment_methods.key(0), checked: true %>
   <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
 
   <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
   <%= f.label :payment_method, Order.payment_methods_i18n[:transfer]%>
 
   <h4>  お届け先の選択  </h4>
+
+  <%= f.radio_button :address_option, 0, checked: true  %>
+  〒<%= current_customer.postal_code %><%= current_customer.address %><%= current_customer.last_name %><%= current_customer.first_name %>
+
+  <%= f.radio_button :address_option, 1 %>
   <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display) %>
 
-  <%= form_with model: @address, url: public_addresses_path, method: :post do |f| %>
+
+  <%= f.radio_button :address_option, 2 %>
 
   <div class="field">
 
@@ -30,8 +36,5 @@
     <%= f.text_field :name, class: "name" %>
   </div>
 
-  <%= f.submit '新規登録'%>
+  <%= f.submit "確認画面へ進む"%>
   <% end %>
-
-<% end %>
-<p>Find me in app/views/public/orders/new.html.erb</p>

@@ -28,7 +28,9 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
-    resources :orders,only:  [:new,:index,:show]
+    post 'orders/confirm' => 'orders#confirm', as: 'confirm'
+    get 'orders/thanks' => 'orders#thanks', as: 'thanks'
+    resources :orders, only:  [:new,:index,:show,:create]
   end
 
 
