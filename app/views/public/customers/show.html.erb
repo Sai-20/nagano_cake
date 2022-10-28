@@ -1,5 +1,10 @@
 <h1>マイページ</h1>
 
+<h2>登録情報</h2>
+
+<%= link_to "編集する", info_edit_path %></br>
+
+
 <%= current_customer.last_name %><%= current_customer.first_name %></br>
 
 <%= current_customer.last_name_kana %><%= current_customer.first_name_kana %></br>
@@ -12,3 +17,6 @@
 
 <%= current_customer.email %>
 
+
+<%= link_to "配送先一覧", public_addresses_path %>
+<%#= link_to "注文履歴一覧",  %>

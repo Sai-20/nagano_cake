@@ -6,4 +6,17 @@
   <th><%= link_to "新規登録", new_customer_registration_path %></th>
   <th><%= link_to "ログイン", new_customer_session_path %></th>
 </table>
-<p></p>
+
+<table>
+  <% @items.each do |item| %>
+  <tr>
+    <td><% if item.image.attached? %>
+          <%= image_tag item.image, size:"200x200" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "200x200" %>
+        <% end %> </td>
+    <td><%= link_to item.name, public_item_path(item) %></td>
+    <td>¥<%= item.price %></td>
+  </tr>
+  <% end %>
+</table>
