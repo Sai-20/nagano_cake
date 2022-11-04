@@ -20,6 +20,7 @@
 </table>
 <table>
 
+  <h3>請求情報</h3>
   <tr>
     <th>送料</th>
     <td><%= @postage %></td>
@@ -33,4 +34,23 @@
     <td><%= @total + @postage %></td>
   </tr>
 
+</table>
+<table>
+  <h3>注文内容</h3>
+  <tr>
+    <th>商品</th>
+    <th>単価（税込み）</th>
+    <th>個数</th>
+    <th>小計</th>
+  </tr>
+  <% @order.each do |order| %>
+    <% order.order_details.each do |order_detail| %>
+  <tr>
+    <td><%= order_detail.item.name %></td>
+    <td><%= order_detail.item.price %></td>
+    <td><%= order_detail.amount %></td>
+    <td><%= order_detail.item.price * order_detail.amount %></td>
+  </tr>
+    <% end %>
+  <% end %>
 </table>

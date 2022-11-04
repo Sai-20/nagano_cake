@@ -49,7 +49,6 @@ class Public::OrdersController < ApplicationController
       @total = @total + cart_item.item.with_tax_price
     end
     @postage = 800
-
   end
 
   def thanks
