@@ -23,19 +23,33 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    @order = current_customer.order.new(order_params)
+    @order = current_customer.orders.new(order_params)
     @order.status = 0
     @order.save
-      redirect_to public_thanks_path
+      redirect_to public_thanks_path@cart_items = current_customer.cart_items
+    @cart_items = current_customer.cart_items
+    @cart_items.each do |cart_item|
+    @order_detail = OrderDetail.new
+    @order_detail.item_id = cart_item.item_id
+    @order_detail.amount = cart_item.amount
+    @order_detail.order_id = @order.id
+    @order_detail.save
+    end
   end
 
-
   def index
-    @order = current_customer.order
+    @order = current_customer.orders
   end
 
   def show
-    @order = current_customer.order
+    @order = current_customer.orders
+    @cart_items = current_customer.cart_items
+    @total = 0
+    @cart_items.each do |cart_item|
+      @total = @total + cart_item.item.with_tax_price
+    end
+    @postage = 800
+
   end
 
   def thanks
