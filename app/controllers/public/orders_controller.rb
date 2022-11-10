@@ -23,17 +23,21 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    @order = current_customer.orders.new(order_params)
-    @order.status = 0
-    @order.save
-      redirect_to public_thanks_path@cart_items = current_customer.cart_items
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    if @order.save
     @cart_items = current_customer.cart_items
     @cart_items.each do |cart_item|
-    @order_detail = OrderDetail.new
-    @order_detail.item_id = cart_item.item_id
-    @order_detail.amount = cart_item.amount
-    @order_detail.order_id = @order.id
-    @order_detail.save
+    order_detail = OrderDetail.new(order_id: @order.id)
+    order_detail.item_id = cart_item.item_id
+    order_detail.purchase_price = cart_item.item.price
+    order_detail.amount = cart_item.amount
+    order_detail.save
+    end
+    @cart_items.destroy_all
+    redirect_to public_thanks_path
+    else
+    render "new"
     end
   end
 
@@ -42,7 +46,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @order = current_customer.orders
+    @order = Order.find(params[:id])
     @cart_items = current_customer.cart_items
     @total = 0
     @cart_items.each do |cart_item|
@@ -57,7 +61,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:payment,:postage,:postal_code,:address,:name,:payment_method)
+    params.require(:order).permit(:payment,:postage,:postal_code,:address,:name,:payment_method,:status)
   end
 
 end

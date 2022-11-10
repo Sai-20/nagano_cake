@@ -9,3 +9,19 @@ Admin.create(
   email: "aa@aa",
   password: "2960ak"
   )
+10.times do |n|
+  Genre.create!(
+    name: "ジャンルテスト#{n + 1}",
+  )
+end
+
+10.times do |n|
+  Item.create!(
+    genre_id: n + 1,
+    name: "商品テスト#{n + 1}",
+    introduction: "おいしいよ",
+    price: 1000 + (n * 6),
+    is_active: true
+  )
+end
+

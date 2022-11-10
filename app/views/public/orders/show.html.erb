@@ -7,15 +7,12 @@
     <th>　支払方法　</th>
     <th>　ステータス　</th>
   </tr>
-  <% @order.each do |order| %>
-    <% order.order_details.each do |order_detail| %>
   <tr>
-    <td><%= l order.created_at, format: :short %></td>
-    <td><%= order.postal_code %><%= order.address %><%= order.name %></td>
-    <td><%= order.payment_method_i18n %></td>
-    <td><%= order.status_i18n %></td>
+    <td><%= l @order.created_at, format: :short %></td>
+    <td><%= @order.postal_code %><%= @order.address %><%= @order.name %></td>
+    <td><%= @order.payment_method_i18n %></td>
+    <td><%= @order.status_i18n %></td>
   </tr>
-    <% end %>
   <% end %>
 </table>
 <table>
@@ -43,14 +40,12 @@
     <th>個数</th>
     <th>小計</th>
   </tr>
-  <% @order.each do |order| %>
-    <% order.order_details.each do |order_detail| %>
+  <% @order.order_details.each do |order_detail| %>
   <tr>
     <td><%= order_detail.item.name %></td>
     <td><%= order_detail.item.price %></td>
     <td><%= order_detail.amount %></td>
     <td><%= order_detail.item.price * order_detail.amount %></td>
   </tr>
-    <% end %>
   <% end %>
 </table>

@@ -6,6 +6,10 @@
           transfer: "銀行振込"
         status:
           waiting_for_payment: "入金待ち"
+          payment_confirmation: "入金確認"
+          under_construction: "制作中"
+          preparing_to_ship: "発送準備中"
+          shipping: "発送中"
     time:
       formats:
         default: "%Y/%m/%d %H:%M:%S"
