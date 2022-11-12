@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :items
     resources :customers
     resources :orders
+    resources :order_details
   end
 
   namespace :public do
@@ -35,7 +36,7 @@ Rails.application.routes.draw do
   namespace :public do
     post 'orders/confirm' => 'orders#confirm', as: 'confirm'
     get 'orders/thanks' => 'orders#thanks', as: 'thanks'
-    resources :orders, only:  [:new,:index,:show,:create]
+    resources :orders, only:  [:new,:index,:show,:create,:update]
   end
 
 

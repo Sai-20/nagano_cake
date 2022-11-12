@@ -10,6 +10,13 @@
           under_construction: "制作中"
           preparing_to_ship: "発送準備中"
           shipping: "発送中"
+      order_detail:
+        production_status:
+          cannot_start: "着手不可"
+          waiting_for_production: "制作待ち"
+          under_construction: "制作中"
+          production_completed: "制作完了"
+
     time:
       formats:
         default: "%Y/%m/%d %H:%M:%S"
